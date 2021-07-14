@@ -4,50 +4,71 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Protfolio</title>
-    <style>
-        .main{
-            text-align:center;
-        }
-    </style>
+    <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
+    <link rel="stylesheet" type="text/css" href="style/style.css"
+   
+    <title>protfolio</title>
+    
 </head>
 <body>
-    <div id="loading">
-        loading...
-    </div>
-    <div class="main" id="maincontainer" hidden>
-
-    <img  
-    height=100 
-    width=100
-    id="profileImage">
-  
-    <h2 id="fullName">  </h2>
-    <p id ="bio"></p>
-    <h5 id="follow"></h5>   
-    <p>check me on <a id="githublink"> github</a></p>
-    <a class="twitter-timeline" data-width="300" data-height="400" href="https://twitter.com/shrawanx?ref_src=twsrc%5Etfw">Tweets by shrawanx</a> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-  </div>
-
-  <script>
- 
-    fetch(" https://api.github.com/users/Gaius-Shrestha")
-    .then(response => response.json())
-    .then(function(data) {
-        console.log(data)
-
-        let followersCount= data['followers']
-        let followersInfo = 'i have been followed by 0 awesome people'
-        document.getElementById('profileImage').src= data['avatar_url']
-        document.getElementById('fullName').textContent= data['name']
-        document.getElementById('bio').textContent= data['bio']
-        document.getElementById('follow').textContent= followersInfo
-        document.getElementById('githublink').href= data['html_url']
-        document.getElementById('maincontainer').hidden=false
-        document.getElementById('loading').hidden=true
-    })
-    
-</script>
+    <div class="section">
+        <div class="container">
+            <div class="content-section">
+             <div class="title">
+              <h1>About Me</h1>
+             </div>
+                 <div class="content">
+                    <h3> Hi! my name is Gaius Shrestha.</h3>
+                    <p> i like to watch anime. kjasdhjashdkjahsdkjhaskjdhaksjdhkashdkjhs
+                        kasjdhjashdkjashdjahsdjhaskdhajsdhkjashdjahsjdhaskjdhkajshdkjashdk
+                        ahkdhasjdhkashdjahsdjkhaskjdhajkshdjkashdkjahskdjhaskjdh hjsdhj
+                        jhss hasdhsa dui ii uiq whjdadhs dadiasoidaosdjalsd asdjlasj dlkajs 
+                        asdjasjdjklasjdkas dajskdjalskdjalks
+                    </p>
+                    
+                    <div class="button">
+                        <a href="">read more</a>
+                    </div>
+                </div>
+                <div class="social">
+                  <a href=""> <i class="fab fa-facebook-square"></i></a>
+                  <a href=""> <i class="fab fa-instagram"></i></a>
+                  <a href=""> <i class="fab fa-github"></i></a>
+                </div>
+                <div class="column">
+                </div>
+               <div class="scroll">
+                   <h2>My Projects</h2><hr>
+                   <ul id='myrepos'>
+                   </ul>
+                    </div>
+               </div>
+               <script>
+                   fetch("https://api.github.com/users/Gaius-Shrestha/repos")
+                   .then(response => response.json())
+                       .then(function(data){
+                           // console.log(data)
+                           for (let i in data){
+                               let ul = document.getElementById('myrepos');
+                               let li = document.createElement('li');
+                               li.innerHTML = (`
+                               <p><strong>Repo:</strong> ${data[i].name}</p>
+                               <p><strong>Description:</strong> ${data[i].description}</p>
+                               <p><strong>URL:</strong><a target="_blank" href="${data[i].html_url}">${data[i].html_url}</a></p>
+                               `);
+                               ul.appendChild(li);
+       
+                           }
+                           
+                       })
+                   
+               </script>
+             </div>
+             <div class="image-section">
+                <img src="images/g.jpg">
+            </div>
+                       </div>
+    </div>  
 
 </body>
 </html>
